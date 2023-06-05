@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import com.eduardo.projectg.ui.theme.Items.*
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuDrawer(){
@@ -25,56 +24,41 @@ fun MenuDrawer(){
         mutableStateOf("")
     }
     ModalNavigationDrawer(
+        drawerState = drawState,
         drawerContent = {
-            Header(
-                modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-            )
+            Column(Modifier.fillMaxHeight()) {
+                Header(modifier = Modifier.padding(16.dp))
 
-            Body(items = Items.values().toList()){
-                text = when (it){
-                    Item1 ->{
-                        it.label
-                    }
-                    Item2 ->{
-                        it.label
-                    }
-                    Item3 ->{
-                        it.label
-                    }
-                    Item4 -> {
-                        it.label
+                Body(
+                    items = Items.values().toList()) {
+                    text = it.label
+                    scope.launch {
+                        drawState.close()
                     }
                 }
-            scope.launch {
-                drawState.close()
+            }
+        },
+        content = {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Button(onClick = { scope.launch { drawState.open() } }) {
+                    Text(text = "Open Menu")
+                }
+                Text(text = text)
             }
         }
-
-                        },
-
-        drawerState = drawState) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Button(onClick = { scope.launch { drawState.open() } }) {
-                Text(text = "Open Menu")
-            }
-            Text(text = text)
-
-        }
-    }
+    )
 }
 
 @Composable
 fun Header(modifier: Modifier = Modifier,
            ){
     Column(
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = modifier
         ) {
             Icon(imageVector = Icons.Default.Person, contentDescription = null)
