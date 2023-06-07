@@ -92,6 +92,6 @@ enum class Items(val label:String, val icon:ImageVector){
 
 @Preview
 @Composable
-fun preview(){
+fun previewMenu(){
     MenuDrawer()
 }
