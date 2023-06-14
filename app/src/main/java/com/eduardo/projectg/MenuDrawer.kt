@@ -1,29 +1,27 @@
-package com.eduardo.projectg.ui.theme
+package com.eduardo.projectg
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.material3.DrawerValue.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.eduardo.projectg.ui.theme.Items.*
+import com.eduardo.projectg.Items.*
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuDrawer(){
-    val drawState = rememberDrawerState(initialValue = Closed)
+    val drawState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var text by remember {
         mutableStateOf("")
     }
-    ModalNavigationDrawer(
+    ModalDrawer(
         drawerState = drawState,
         drawerContent = {
             Column(Modifier.fillMaxHeight()) {
