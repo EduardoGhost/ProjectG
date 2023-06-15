@@ -2,4 +2,7 @@
     <string name="app_name">ProjectG</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_components">Components</string>
+    <string name="dont_have_an_account_yet">Ainda não tem conta?</string>
+    <string name="write_yourself">Escrever-se</string>
+    <string name="sign_in">Entrar</string>
 </resources>
